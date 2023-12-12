@@ -8,25 +8,39 @@ let SCORE_FOR_DIAMOND = 81
 let SCORE_FOR_LEGENDARY = 91
 let SCORE_FOR_IMORTAL = 101
 
+/*=======================================================================*/
+
+ /*Ficha do rank do jogador (EXEMPLO)*/
+
+let player = {
+
+    score : 0,
+    rank : "indefinido",
+    
+    victoriesMatch : 87,
+    defeatMatch : 3
+}
+
 main()
+
+/*=======================================================================*/
+
 
 function main()
 {
-
-    /*Vitórias e derrotas do jogador (EXEMPLO)*/
-    let victoriesMatch = 87
-    let defeatMatch = 3
     
     /*Define o score e o rank do jogador*/
 
-    let playerScore = setPlayerScore(victoriesMatch, defeatMatch)
-    let playerRank = setPlayerRank(playerScore)
+    player.score = setPlayerScore(player.victoriesMatch, player.defeatMatch)
+    player.rank = setPlayerRank(player.score)
 
     /*Imprime a saída*/
     
-    showPlayerRank(playerScore, playerRank)
+    showPlayerRank(player.score, player.rank)
 
 }
+
+/*=======================================================================*/
 
    /*Calcula o rank do jogador baseado em seu score*/
 
