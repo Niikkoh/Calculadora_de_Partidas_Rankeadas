@@ -17,9 +17,13 @@ function main()
     let victoriesMatch = 87
     let defeatMatch = 3
     
+    /*Define o score e o rank do jogador*/
+
     let playerScore = setPlayerScore(victoriesMatch, defeatMatch)
     let playerRank = setPlayerRank(playerScore)
 
+    /*Imprime a saída*/
+    
     showPlayerRank(playerScore, playerRank)
 
 }
