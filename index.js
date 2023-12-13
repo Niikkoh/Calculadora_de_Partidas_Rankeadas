@@ -1,74 +1,81 @@
 
 /*Constantes que definem o score mínimo necessário para alcançar o Rank*/
 
-let SCORE_FOR_BRONZE = 11
-let SCORE_FOR_SILVER = 21
-let SCORE_FOR_GOLD = 51
-let SCORE_FOR_DIAMOND = 81
-let SCORE_FOR_LEGENDARY = 91
-let SCORE_FOR_IMORTAL = 101
+const SCORE_FOR_BRONZE = 11
+const SCORE_FOR_SILVER = 21
+const SCORE_FOR_GOLD = 51
+const SCORE_FOR_DIAMOND = 81
+const SCORE_FOR_LEGENDARY = 91
+const SCORE_FOR_IMORTAL = 101
+
+/*Exemplo de ficha de um jogador*/
+
+const PLAYER_VICTORIES_MATCH_EXAMPLE = 63
+const PLAYER_DEFEAT_MATCH_EXAMPLE = 1
 
 /*=======================================================================*/
 
- /*Ficha do rank do jogador (EXEMPLO)*/
+ /*Classe do jogador*/
 
-let player = {
+class player {
 
-    score : 0,
-    rank : "indefinido",
+    constructor(victoriesMatch, defeatMatch)
+    {
+        this.victoriesMatch = victoriesMatch
+        this.defeatMatch = defeatMatch
+        this.score = 0
+        this.rank = "indefinido"
+    }
     
-    victoriesMatch : 87,
-    defeatMatch : 3
+      /*Calcula o rank do jogador baseado em seu score*/
+
+    setPlayerRank () 
+    {
+        if(this.score < SCORE_FOR_BRONZE)
+            this.rank = "Ferro"
+        else if(this.score < SCORE_FOR_SILVER)
+            this.rank = "Bronze"
+        else if(this.score < SCORE_FOR_GOLD)
+            this.rank = "Prata"
+        else if(this.score < SCORE_FOR_DIAMOND)
+            this.rank = "Ouro"
+        else if(this.score < SCORE_FOR_LEGENDARY)
+            this.rank = "Diamante"
+        else if(this.score < SCORE_FOR_IMORTAL)
+            this.rank = "Lendário"
+        else
+            this.rank = "Imortal"
+    }
+
+        /*Imprime a saída na tela*/
+
+    showPlayerRank ()
+    {
+        console.log (`O Herói tem de saldo de ${this.score} está no nível de ${this.rank}`)
+    }
+
+        /*Calcula o score do jogador através do calculo 'vitórias - derrotas' */
+
+    setPlayerScore () { this.score = this.victoriesMatch - this.defeatMatch }
 }
 
 main()
 
 /*=======================================================================*/
 
-
 function main()
 {
+   
+    /*Instanciando objeto jogador*/
+    let onePlayer = new player(PLAYER_VICTORIES_MATCH_EXAMPLE, PLAYER_DEFEAT_MATCH_EXAMPLE)
     
-    /*Define o score e o rank do jogador*/
+    /*Define o score e o rank do jogador instanciado*/
 
-    player.score = setPlayerScore(player.victoriesMatch, player.defeatMatch)
-    player.rank = setPlayerRank(player.score)
+    onePlayer.setPlayerScore()
+    onePlayer.setPlayerRank()
 
     /*Imprime a saída*/
     
-    showPlayerRank(player.score, player.rank)
+    onePlayer.showPlayerRank()
 
 }
-
-/*=======================================================================*/
-
-   /*Calcula o rank do jogador baseado em seu score*/
-
-function setPlayerRank (playerScore) 
-{
-    if(playerScore < SCORE_FOR_BRONZE)
-        return "Ferro"
-    else if(playerScore < SCORE_FOR_SILVER)
-        return "Bronze"
-    else if(playerScore < SCORE_FOR_GOLD)
-        return "Prata"
-    else if(playerScore < SCORE_FOR_DIAMOND)
-        return "Ouro"
-    else if(playerScore < SCORE_FOR_LEGENDARY)
-        return "Diamante"
-    else if(playerScore < SCORE_FOR_IMORTAL)
-        return "Lendário"
-    else
-        return "Imortal"
-}
-
-   /*Imprime a saída na tela*/
-
-function showPlayerRank (playerScore, playerRank)
-{
-    console.log (`O Herói tem de saldo de ${playerScore} está no nível de ${playerRank}`)
-}
-
-  /*Calcula o score do jogador através do calculo 'vitórias - derrotas' */
-
-function setPlayerScore (victoriesMatch, defeatMatch) { return victoriesMatch - defeatMatch }
